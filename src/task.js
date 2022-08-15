@@ -1,4 +1,4 @@
-const createTask = () => {
+const createPopUp = () => {
 
 let popUp = () => {
     //const content = document.querySelector('.content');
@@ -38,22 +38,23 @@ let popUp = () => {
     //form
     const form = document.createElement('form');
     popUpContent.appendChild(form);
-    form.setAttribute("action", "#");
+    //form.setAttribute("action", "#");
+    form.setAttribute("id", "form");
     form.classList.add('form');
 
-    const inputForm = document.createElement('input');
-    form.appendChild(inputForm);
-    inputForm.setAttribute("type", "text");
-    inputForm.setAttribute("id", "inputForm");
-    inputForm.setAttribute("name", "inputForm");
-    inputForm.setAttribute("placeholder", "Title: Pay bills");
+    const title = document.createElement('input');
+    form.appendChild(title);
+    title.setAttribute("type", "text");
+    title.setAttribute("id", "title");
+    title.setAttribute("name", "title");
+    title.setAttribute("placeholder", "Title: Pay bills");
 
-    const textAreaForm = document.createElement('input');
-    form.appendChild(textAreaForm);
-    textAreaForm.setAttribute("type", "text");
-    textAreaForm.setAttribute("id", "details");
-    textAreaForm.setAttribute("name", "details");
-    textAreaForm.setAttribute("placeholder", "Details: e.g internet, phone, rent.");
+    const details = document.createElement('input');
+    form.appendChild(details);
+    details.setAttribute("type", "text");
+    details.setAttribute("id", "details");
+    details.setAttribute("name", "details");
+    details.setAttribute("placeholder", "Details: e.g internet, phone, rent.");
 
     const labelDate = document.createElement('label');
     form.appendChild(labelDate);
@@ -62,40 +63,66 @@ let popUp = () => {
     labelDate.setAttribute("name", "label");
     labelDate.textContent = 'Due date:'
 
-    const dateForm = document.createElement('input');
-    form.appendChild(dateForm);
-    dateForm.setAttribute("type", "date");
-    dateForm.setAttribute("id", "date");
-    dateForm.setAttribute("name", "date");
+    const date = document.createElement('input');
+    form.appendChild(date);
+    date.setAttribute("type", "date");
+    date.setAttribute("id", "date");
+    date.setAttribute("name", "date");
 
-    const labelPriority = document.createElement('p');
-    form.appendChild(labelPriority);
-    labelPriority.textContent = 'Priority:'
-    labelPriority.classList.add('priority');
+    const priority = document.createElement('p');
+    form.appendChild(priority);
+    priority.textContent = 'Priority:'
+    priority.classList.add('priority');
+    priority.value = '';
 
-    const btnLow = document.createElement('p');
-    form.appendChild(btnLow);
+    const btnLow = document.createElement('input');
+    priority.appendChild(btnLow);
+    btnLow.setAttribute("type", "button");
     btnLow.setAttribute("id", "btnLow");
-    btnLow.textContent = 'Low';
+    btnLow.value = 'Low';
     btnLow.classList.add('btnLow');
+    btnLow.addEventListener('click', () => {
+        btnMedium.setAttribute("style", "border: 2px solid gray");
+        btnHigh.setAttribute("style", "border: 2px solid gray");
+        btnLow.setAttribute("style", "border: 2px solid green");
+        priority.value = 'Low';
+    })
 
-    const btnMedium = document.createElement('p');
-    form.appendChild(btnMedium);
+    const btnMedium = document.createElement('input');
+    priority.appendChild(btnMedium);
+    btnMedium.setAttribute("type", "button");
     btnMedium.setAttribute("id", "btnMedium");
-    btnMedium.textContent = 'Medium';
+    btnMedium.value = 'Medium';
     btnMedium.classList.add('btnMedium');
+    btnMedium.addEventListener('click', () => {
+        btnHigh.setAttribute("style", "border: 2px solid gray");
+        btnLow.setAttribute("style", "border: 2px solid gray");
+        btnMedium.setAttribute("style", "border: 2px solid blue");
+        priority.value = 'Medium';
+    })
 
-    const btnHigh = document.createElement('p');
-    form.appendChild(btnHigh);
+    const btnHigh = document.createElement('input');
+    priority.appendChild(btnHigh);
+    btnHigh.setAttribute("type", "button");
     btnHigh.setAttribute("id", "btnHigh");
-    btnHigh.textContent = 'High';
+    btnHigh.value = 'High';
     btnHigh.classList.add('btnHigh');
+    btnHigh.addEventListener('click', () => {
+        btnLow.setAttribute("style", "border: 2px solid gray");
+        btnMedium.setAttribute("style", "border: 2px solid gray");
+        btnHigh.setAttribute("style", "border: 2px solid red");
+        priority.value = 'High';
+    })
 
     const submit = document.createElement('input');
     form.appendChild(submit);
     submit.setAttribute("type", "submit");
     submit.setAttribute("id", "submit");
     submit.value = 'Add task';
+    submit.addEventListener('click', () => {
+        event.preventDefault();
+        removePopUp();
+    })
 
     function removePopUp() {
         x = document.querySelector('body');
@@ -103,8 +130,9 @@ let popUp = () => {
         x.removeChild(y);
     }
 
+
 }
     return {popUp}
 }
 
-export default createTask();
+export default createPopUp();

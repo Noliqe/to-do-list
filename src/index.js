@@ -1,5 +1,5 @@
 import './style.css';
-import createTask from './task.js';
+import createPopUp from './task.js';
 
 class task {
     constructor(title, detail, date, priority) {
@@ -15,8 +15,12 @@ let task1 = new task('jan', 'alleman', 'date', 'prio');
 const add = () => {
     let buttonAdd = document.getElementById('buttonAdd');
     buttonAdd.addEventListener('click', () => {
-       return createTask.popUp();
+       return createPopUp.popUp();
     })
 }
-//add();
-createTask.popUp()
+add();
+
+
+const createTask = () => {
+    const newTask = new task(title.value, details.value, date.value, priority.value);
+}
