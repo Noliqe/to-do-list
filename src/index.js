@@ -10,7 +10,6 @@ class task {
     }
 }
 
-let task1 = new task('jan', 'alleman', 'date', 'prio');
 
 const sidebarElements = () => {
 
@@ -74,6 +73,9 @@ const contentElements = (function () {
         const addTaskBtn = document.createElement('button');
         contentClass.appendChild(addTaskBtn);
         addTaskBtn.textContent = "+ Add Task";
+        addTaskBtn.addEventListener('click', () => {
+            form();
+         })
     }
     let selectedToday = () => {
         const content = document.querySelector('.sub-content');
@@ -112,3 +114,103 @@ const contentElements = (function () {
             removeContent}
 })();
 
+contentElements.selectedInbox();
+
+const form = () => {
+    const content = document.querySelector('.sub-content');
+
+    //form
+    const form = document.createElement('form');
+    content.appendChild(form);
+    form.setAttribute("id", "form");
+    form.classList.add('form');
+    // input title
+    const title = document.createElement('input');
+    form.appendChild(title);
+    title.setAttribute("type", "text");
+    title.setAttribute("id", "title");
+    title.setAttribute("placeholder", "Title: e.g. Pay bills");
+    // input detail
+    const detail = document.createElement('input');
+    form.appendChild(detail);
+    detail.setAttribute("type", "text");
+    detail.setAttribute("id", "detail");
+    detail.setAttribute("placeholder", "Details: e.g internet, phone, rent.");
+    // input date
+    const labelDate = document.createElement('p');
+    form.appendChild(labelDate);
+    labelDate.textContent = 'Date:'
+    labelDate.classList.add('labelDate');
+
+    const date = document.createElement('input');
+    form.appendChild(date);
+    date.setAttribute("type", "date");
+    date.setAttribute("id", "date");
+    // input priority
+    const priority = document.createElement('p');
+    form.appendChild(priority);
+    priority.textContent = 'Priority:'
+    priority.setAttribute("id", "priority");
+    priority.classList.add('priority');
+    priority.value = '';
+
+    const btnLow = document.createElement('input');
+    priority.appendChild(btnLow);
+    btnLow.setAttribute("type", "button");
+    btnLow.setAttribute("id", "btnLow");
+    btnLow.value = 'Low';
+    btnLow.classList.add('btnLow');
+    btnLow.addEventListener('click', () => {
+        btnMedium.setAttribute("style", "border: 2px solid gray");
+        btnHigh.setAttribute("style", "border: 2px solid gray");
+        btnLow.setAttribute("style", "border: 2px solid green");
+        priority.value = 'Low';
+    })
+    const btnMedium = document.createElement('input');
+    priority.appendChild(btnMedium);
+    btnMedium.setAttribute("type", "button");
+    btnMedium.setAttribute("id", "btnMedium");
+    btnMedium.value = 'Medium';
+    btnMedium.classList.add('btnMedium');
+    btnMedium.addEventListener('click', () => {
+        btnHigh.setAttribute("style", "border: 2px solid gray");
+        btnLow.setAttribute("style", "border: 2px solid gray");
+        btnMedium.setAttribute("style", "border: 2px solid blue");
+        priority.value = 'Medium';
+    })
+    const btnHigh = document.createElement('input');
+    priority.appendChild(btnHigh);
+    btnHigh.setAttribute("type", "button");
+    btnHigh.setAttribute("id", "btnHigh");
+    btnHigh.value = 'High';
+    btnHigh.classList.add('btnHigh');
+    btnHigh.addEventListener('click', () => {
+        btnLow.setAttribute("style", "border: 2px solid gray");
+        btnMedium.setAttribute("style", "border: 2px solid gray");
+        btnHigh.setAttribute("style", "border: 2px solid red");
+        priority.value = 'High';
+    })
+    const submit = document.createElement('input');
+    form.appendChild(submit);
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("id", "submit");
+    submit.value = 'Add task';
+    submit.addEventListener('click', () => {
+        event.preventDefault();
+        getValueForm();
+        removeForm();
+    })
+}
+
+form();
+
+const removeForm = () => {
+    const content = document.querySelector('.sub-content');
+    let x = document.querySelector('#form');
+    content.removeChild(x);
+}
+
+const getValueForm = () => {
+   let task1 = new task(title.value, detail.value, date.value, priority.value);
+    console.log(task1)
+}
