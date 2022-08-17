@@ -7,6 +7,8 @@ html {
 body {
     margin: 0;
     padding: 0;
+    --sidebar-background-color: rgb(255, 102, 0);
+    --sidebar-left-margin: 20px;
 }
 
 /* popup */
@@ -127,12 +129,29 @@ input[type="submit"] {
 
 /* sidebar */
 .sidebar {
-    background-color: rgb(255, 102, 0);
+    background-color: var(--sidebar-background-color);
     height: 80vh;
     width: 200px;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
 }
 
-button {
-    width: 54px;
-    height: 50px;
+.nav > * {
+    width: 150px;
+    margin-left: var(--sidebar-left-margin);
 }
+
+.nav > * > button {
+    background-color: var(--sidebar-background-color);
+    border: 0;
+    border-radius: 10px;
+    width: 150px;
+    height: 35px;
+}
+
+.nav > * > button:hover {
+    background-color: white;
+}
+
+

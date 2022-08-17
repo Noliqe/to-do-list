@@ -113,7 +113,6 @@ let popUp = () => {
         btnHigh.setAttribute("style", "border: 2px solid red");
         priority.value = 'High';
     })
-
     const submit = document.createElement('input');
     form.appendChild(submit);
     submit.setAttribute("type", "submit");
@@ -129,10 +128,11 @@ let popUp = () => {
         let y = document.querySelector('.popUp');
         x.removeChild(y);
     }
-
-
 }
+
     return {popUp}
 }
+
+
 
 export default createPopUp();
