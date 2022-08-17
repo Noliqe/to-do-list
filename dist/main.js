@@ -16,7 +16,7 @@
   \*************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ \"./node_modules/css-loader/dist/runtime/getUrl.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);\n// Imports\n\n\n\nvar ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./icons8-close-48.png */ \"./src/icons8-close-48.png\"), __webpack_require__.b);\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\nvar ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"html {\\n    margin: 0;\\n    padding: 0;\\n    overflow-x: hidden;\\n}\\n\\nbody {\\n    margin: 0;\\n    padding: 0;\\n    --sidebar-background-color: rgb(255, 102, 0);\\n    --sidebar-left-margin: 20px;\\n}\\n\\n/* popup */\\n.popUp {\\n    position: absolute;\\n    border: 1px solid white;\\n    top: 20%;\\n    right: 25%;\\n    width: 750px;\\n    height: 400px;\\n    display: grid;\\n    grid-template-columns: repeat(10, 1fr);\\n    grid-template-rows: repeat(8, 1fr);\\n}\\n\\n.popUpHeader {\\n    grid-column: 1 / 11;\\n    grid-row: 1;\\n    background-color: blueviolet;\\n    display: flex;\\n    flex-direction: row;\\n    justify-content: space-between;\\n    align-items: center;\\n    font-size: 20px;\\n}\\n\\n.popUpClose {\\n    background: url(\" + ___CSS_LOADER_URL_REPLACEMENT_0___ + \");\\n    background-repeat: no-repeat;\\n    width: 48px;\\n    height: 48px;\\n    cursor: pointer;\\n}\\n\\n.popUpSidebar {\\n    grid-column: 1 / 3;\\n    grid-row: 2/9;\\n    background-color: aliceblue;\\n}\\n\\n.popUpContent {\\n    grid-column: 3 / 11;\\n    grid-row: 2/9;\\n    background-color: yellow;\\n}\\n/*form*/\\n.form {\\n    height: 320px;\\n    display: grid;\\n    grid-template-columns: repeat(5, 1fr);\\n    grid-template-rows: repeat(6, 1fr);\\n    align-items: center;\\n}\\n\\ninput[type=\\\"text\\\"] {\\n    border: 0;\\n    padding: 10px;\\n}\\n\\n#label {\\n    grid-column: 1/2;\\n    grid-row: 5/6;\\n    text-align: start;\\n}\\n\\ninput[type=\\\"date\\\"] {\\n    border-radius: 5px;\\n    border-color: lightblue;\\n    width: 110px;\\n    grid-column: 2/3;\\n    grid-row: 5/6;\\n}\\n\\n.btnLow, .btnMedium, .btnHigh {\\n    border: 2px solid gray;\\n    border-radius: 10px;\\n    width: 60px;\\n    text-align: center;\\n    margin-left: 10px;\\n}\\n\\n\\ninput[type=\\\"submit\\\"] {\\n    grid-column: 5/6;\\n    grid-row: 6/7;\\n}\\n\\n#title {\\n    grid-column: 1/6;\\n    grid-row: 1/2;\\n    height: 40px;\\n}\\n\\n#details {\\n    grid-column: 1/6;\\n    grid-row: 2/4;\\n    height: 80px;\\n}\\n\\n.priority {\\n    grid-column: 1/4;\\n    grid-row: 6/7;\\n}\\n\\n/* header */\\n.header{\\n    background-color: lightblue;\\n    width: 100vw;\\n    height: 100px;\\n}\\n\\n/* main */\\n.main {\\n    background-color: gray;\\n    width: 100vw;\\n    height: 80vh;\\n}\\n\\n/* sidebar */\\n.sidebar {\\n    background-color: var(--sidebar-background-color);\\n    height: 80vh;\\n    width: 200px;\\n    display: flex;\\n    align-items: left;\\n    flex-direction: column;\\n}\\n\\n.nav > * {\\n    width: 150px;\\n    margin-left: var(--sidebar-left-margin);\\n}\\n\\n.nav > * > button {\\n    background-color: var(--sidebar-background-color);\\n    border: 0;\\n    border-radius: 10px;\\n    width: 150px;\\n    height: 35px;\\n}\\n\\n.nav > * > button:hover {\\n    background-color: white;\\n}\\n\\n\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://to-do-list/./src/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"html {\\n    margin: 0;\\n    padding: 0;\\n    overflow-x: hidden;\\n}\\n\\nbody {\\n    margin: 0;\\n    padding: 0;\\n    --sidebar-background-color: rgb(255, 102, 0);\\n    --sidebar-left-margin: 20px;\\n}\\n\\n/* header */\\n.header{\\n    background-color: lightblue;\\n    width: 100vw;\\n    height: 100px;\\n}\\n\\n/* main */\\n.main {\\n    background-color: gray;\\n    width: 100vw;\\n    height: 80vh;\\n    display: flex;\\n    flex-direction: row;\\n}\\n\\n/* content */\\n.content {\\n    width: 80vw;\\n    height: 80vh;\\n    display: flex;\\n    justify-content: center;\\n    align-items: center;\\n}\\n\\n.sub-content {\\n    width: 75vw;\\n    height: 75vh;\\n}\\n\\n/* sidebar */\\n.sidebar {\\n    background-color: var(--sidebar-background-color);\\n    height: 80vh;\\n    width: 20vw;\\n    display: flex;\\n    align-items: left;\\n    flex-direction: column;\\n}\\n\\n.nav > * {\\n    width: 150px;\\n    margin-left: var(--sidebar-left-margin);\\n}\\n\\n.nav > * > button {\\n    background-color: var(--sidebar-background-color);\\n    border: 0;\\n    border-radius: 10px;\\n    width: 150px;\\n    height: 35px;\\n}\\n\\n.nav > * > button:hover {\\n    background-color: white;\\n    border-left: 10px solid red;\\n}\\n\\n\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://to-do-list/./src/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -27,16 +27,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((module) => {
 
 eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n\n      content += cssWithMappingToString(item);\n\n      if (needLayer) {\n        content += \"}\";\n      }\n\n      if (item[2]) {\n        content += \"}\";\n      }\n\n      if (item[4]) {\n        content += \"}\";\n      }\n\n      return content;\n    }).join(\"\");\n  }; // import a list of modules into the list\n\n\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var k = 0; k < this.length; k++) {\n        var id = this[k][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _k = 0; _k < modules.length; _k++) {\n      var item = [].concat(modules[_k]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\n//# sourceURL=webpack://to-do-list/./node_modules/css-loader/dist/runtime/api.js?");
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/***/ ((module) => {
-
-eval("\n\nmodule.exports = function (url, options) {\n  if (!options) {\n    options = {};\n  }\n\n  if (!url) {\n    return url;\n  }\n\n  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them\n\n  if (/^['\"].*['\"]$/.test(url)) {\n    url = url.slice(1, -1);\n  }\n\n  if (options.hash) {\n    url += options.hash;\n  } // Should url be wrapped?\n  // See https://drafts.csswg.org/css-values-3/#urls\n\n\n  if (/[\"'() \\t\\n]|(%20)/.test(url) || options.needQuotes) {\n    return \"\\\"\".concat(url.replace(/\"/g, '\\\\\"').replace(/\\n/g, \"\\\\n\"), \"\\\"\");\n  }\n\n  return url;\n};\n\n//# sourceURL=webpack://to-do-list/./node_modules/css-loader/dist/runtime/getUrl.js?");
 
 /***/ }),
 
@@ -126,17 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n//import createPopUp from './task.js';\n\nclass task {\n    constructor(title, detail, date, priority) {\n        this.title = title;\n        this.detail = detail;\n        this.date = date;\n        this.priority = priority;\n    }\n}\n\nlet task1 = new task('jan', 'alleman', 'date', 'prio');\n\nconst sidebarElements = () => {\n\n    const nav = document.querySelector('.nav')\n    // inbox\n    const inbox = document.createElement('div');\n    nav.appendChild(inbox);\n    let iconInbox = document.createElement('div');\n    inbox.appendChild(iconInbox);\n    let btnInbox = document.createElement('button');\n    inbox.appendChild(btnInbox);\n    btnInbox.setAttribute('id', 'btnInbox');\n    btnInbox.textContent = 'Inbox';\n    btnInbox.classList.add('btnInbox');\n    btnInbox.addEventListener('click', () => {\n        return console.log('hello');\n    })\n    // today\n    const today = document.createElement('div');\n    nav.appendChild(today);\n    let iconToday = document.createElement('div');\n    today.appendChild(iconToday);\n    let btnToday = document.createElement('button');\n    today.appendChild(btnToday);\n    btnToday.setAttribute('id', 'btnToday');\n    btnToday.textContent = 'Today';\n    //upcoming\n    const upcoming = document.createElement('div');\n    nav.appendChild(upcoming);\n    let iconUpcoming = document.createElement('div');\n    upcoming.appendChild(iconUpcoming);\n    let btnUpcoming = document.createElement('button');\n    upcoming.appendChild(btnUpcoming);\n    btnUpcoming.setAttribute('id', 'btnUpcoming');\n    btnUpcoming.textContent = 'Upcoming';\n    \n    \n}\nsidebarElements();\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/icons8-close-48.png":
-/*!*********************************!*\
-  !*** ./src/icons8-close-48.png ***!
-  \*********************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-eval("module.exports = __webpack_require__.p + \"6ef95faafe42a0a74fec.png\";\n\n//# sourceURL=webpack://to-do-list/./src/icons8-close-48.png?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n//import createPopUp from './task.js';\n\nclass task {\n    constructor(title, detail, date, priority) {\n        this.title = title;\n        this.detail = detail;\n        this.date = date;\n        this.priority = priority;\n    }\n}\n\nlet task1 = new task('jan', 'alleman', 'date', 'prio');\n\nconst sidebarElements = () => {\n\n    const nav = document.querySelector('.nav')\n    // inbox\n    const inbox = document.createElement('div');\n    nav.appendChild(inbox);\n    let iconInbox = document.createElement('div');\n    inbox.appendChild(iconInbox);\n    let btnInbox = document.createElement('button');\n    inbox.appendChild(btnInbox);\n    btnInbox.setAttribute('id', 'btnInbox');\n    btnInbox.textContent = 'Inbox';\n    btnInbox.classList.add('btnInbox');\n    btnInbox.addEventListener('click', () => {\n        contentElements.removeContent();\n        contentElements.selectedInbox();\n    })\n    // today\n    const today = document.createElement('div');\n    nav.appendChild(today);\n    let iconToday = document.createElement('div');\n    today.appendChild(iconToday);\n    let btnToday = document.createElement('button');\n    today.appendChild(btnToday);\n    btnToday.setAttribute('id', 'btnToday');\n    btnToday.textContent = 'Today';\n    btnToday.addEventListener('click', () => {\n        contentElements.removeContent();\n        contentElements.selectedToday();\n     })\n    //upcoming\n    const week = document.createElement('div');\n    nav.appendChild(week);\n    let iconWeek = document.createElement('div');\n    week.appendChild(iconWeek);\n    let btnWeek = document.createElement('button');\n    week.appendChild(btnWeek);\n    btnWeek.setAttribute('id', 'btnUpcoming');\n    btnWeek.textContent = 'This week';\n    btnWeek.addEventListener('click', () => {\n        contentElements.removeContent();\n        contentElements.selectedWeek();\n     })\n}\nsidebarElements();\n\n// create content for selected elements on sidebar\nconst contentElements = (function () {\n    let selectedInbox = () => {\n        const content = document.querySelector('.sub-content');\n\n        const contentClass = document.createElement('div');\n        content.appendChild(contentClass);\n        contentClass.classList.add('contentClass');\n\n        const inboxTitle = document.createElement('h1');\n        contentClass.appendChild(inboxTitle);\n        inboxTitle.textContent = 'Inbox';\n\n        const addTaskBtn = document.createElement('button');\n        contentClass.appendChild(addTaskBtn);\n        addTaskBtn.textContent = \"+ Add Task\";\n    }\n    let selectedToday = () => {\n        const content = document.querySelector('.sub-content');\n\n        const contentClass = document.createElement('div');\n        content.appendChild(contentClass);\n        contentClass.classList.add('contentClass');\n\n        const todayTitle = document.createElement('h1');\n        contentClass.appendChild(todayTitle);\n        todayTitle.textContent = 'Today';\n    }\n    let selectedWeek = () => {\n        const content = document.querySelector('.sub-content');\n\n        const contentClass = document.createElement('div');\n        content.appendChild(contentClass);\n        contentClass.classList.add('contentClass');\n\n        const weekTitle = document.createElement('h1');\n        contentClass.appendChild(weekTitle);\n        weekTitle.textContent = 'This week';\n    }\n    function removeContent () {\n        let content = document.querySelector('.sub-content');\n        let x = document.querySelector('.contentClass');\n        if (document.querySelector('.contentClass') === null) {\n            return;\n        } else {\n        content.removeChild(x);\n        }\n    }\n    return {selectedInbox,\n            selectedToday,\n            selectedWeek,\n            removeContent}\n})();\n\n\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ })
 
@@ -166,9 +146,6 @@ eval("module.exports = __webpack_require__.p + \"6ef95faafe42a0a74fec.png\";\n\n
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -194,18 +171,6 @@ eval("module.exports = __webpack_require__.p + \"6ef95faafe42a0a74fec.png\";\n\n
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -220,52 +185,6 @@ eval("module.exports = __webpack_require__.p + \"6ef95faafe42a0a74fec.png\";\n\n
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"main": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		// no on chunks loaded
-/******/ 		
-/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
