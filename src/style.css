@@ -94,6 +94,20 @@ body {
     grid-column: 4/5;
     grid-row: 5/6;
 }
+
+/* content > task */
+
+.taskContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 40vw;
+}
+
+.taskContainer > p {
+    margin: 5px;
+}
+
 /* sidebar */
 .sidebar {
     background-color: var(--sidebar-background-color);

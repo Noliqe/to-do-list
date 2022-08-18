@@ -1,13 +1,43 @@
 import './style.css';
 //import createPopUp from './task.js';
 
+let counter  = 0;
 class task {
     constructor(title, detail, date, priority) {
+        this.id = "taskContainer" + counter++;
         this.title = title;
         this.detail = detail;
         this.date = date;
         this.priority = priority;
     }
+    makeTask() {
+        const taskContent = document.querySelector('.contentClass');
+    
+        const taskContainer = document.createElement('div');
+        taskContent.appendChild(taskContainer);
+        taskContainer.classList.add('taskContainer');
+        taskContainer.setAttribute('id', this.id);
+    
+        const taskTitle = document.createElement('p');
+        taskContainer.appendChild(taskTitle);
+        taskTitle.textContent = this.title;
+    
+        const taskDetail = document.createElement('p');
+        taskContainer.appendChild(taskDetail);
+        taskDetail.textContent = this.detail;
+    
+        const taskDate = document.createElement('p');
+        taskContainer.appendChild(taskDate);
+        taskDate.textContent = this.date;
+
+        if (this.priority === "Low") {
+            taskContainer.setAttribute('style', "border: 2px solid green");
+        } else if (this.priority === "Medium") {
+            taskContainer.setAttribute('style', "border: 2px solid orange");
+        } else if (this.priority === "High") {
+            taskContainer.setAttribute('style', "border: 2px solid red");
+        }
+        }
 }
 
 
@@ -211,6 +241,7 @@ const removeForm = () => {
 }
 
 const getValueForm = () => {
-   let task1 = new task(title.value, detail.value, date.value, priority.value);
-    console.log(task1)
+    let newTask = new task(title.value, detail.value, date.value, priority.value);
+    newTask.makeTask();
 }
+
