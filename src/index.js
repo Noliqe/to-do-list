@@ -1,10 +1,12 @@
 import './style.css';
-//import createPopUp from './task.js';
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 
-let counter  = 0;
+console.log(format(new Date(), "yyyy-MM-dd"));
+//let counter  = 1;
 class task {
     constructor(title, detail, date, priority) {
-        this.id = "taskContainer" + counter++;
+       // this.id = "taskContainer" + counter++;
         this.title = title;
         this.detail = detail;
         this.date = date;
@@ -16,7 +18,6 @@ class task {
         const taskContainer = document.createElement('div');
         taskContent.appendChild(taskContainer);
         taskContainer.classList.add('taskContainer');
-        taskContainer.setAttribute('id', this.id);
     
         const taskTitle = document.createElement('p');
         taskContainer.appendChild(taskTitle);
@@ -28,7 +29,9 @@ class task {
     
         const taskDate = document.createElement('p');
         taskContainer.appendChild(taskDate);
+        taskDate.setAttribute('id', 'taskDate');
         taskDate.textContent = this.date;
+        taskToday();
 
         if (this.priority === "Low") {
             taskContainer.setAttribute('style', "border: 2px solid green");
@@ -36,7 +39,7 @@ class task {
             taskContainer.setAttribute('style', "border: 2px solid orange");
         } else if (this.priority === "High") {
             taskContainer.setAttribute('style', "border: 2px solid red");
-        }
+        } 
         }
 }
 
@@ -144,9 +147,8 @@ const contentElements = (function () {
             removeContent}
 })();
 
-contentElements.selectedInbox();
-
 const form = () => {
+
     const content = document.querySelector('.sub-content');
 
     //form
@@ -228,11 +230,10 @@ const form = () => {
     submit.addEventListener('click', () => {
         event.preventDefault();
         getValueForm();
+        local();
         removeForm();
     })
 }
-
-form();
 
 const removeForm = () => {
     const content = document.querySelector('.sub-content');
@@ -243,5 +244,33 @@ const removeForm = () => {
 const getValueForm = () => {
     let newTask = new task(title.value, detail.value, date.value, priority.value);
     newTask.makeTask();
+    console.log(newTask);
 }
+
+let localArray = JSON.parse(localStorage.getItem("task") || "[]");
+
+const local = () => {
+    let newTask = new task(title.value, detail.value, date.value, priority.value);
+    localArray.push(newTask);
+    localStorage.setItem('task', JSON.stringify(localArray));
+}
+
+
+// let getArray = JSON.parse(localStorage.getItem("task"));
+// console.log(getArray[0]);
+// let ara = getArray.slice(3, 4);
+// let brb = ara.map(a => a.date);
+// console.log(brb);
+
+// const taskToday = () => {
+//     let taskDate = document.querySelector('#taskDate').textContent;
+//     let today = format(new Date(), "yyyy-MM-dd");
+//     console.log(taskDate);
+//     console.log(today);
+//         if (taskDate === today) {
+//             console.log('true');
+//         }
+
+// }
+
 
