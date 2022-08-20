@@ -1,6 +1,10 @@
 import './style.css';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
+import getISOWeek from 'date-fns/getISOWeek';
+import isThisISOWeek from 'date-fns/isThisISOWeek';
+import parseISO from 'date-fns/parseISO'
+
 
 class task {
     constructor(title, detail, date, priority) {
@@ -85,6 +89,7 @@ const sidebarElements = () => {
     btnWeek.addEventListener('click', () => {
         contentElements.removeContent();
         contentElements.selectedWeek();
+        taskWeek();
      })
 }
 sidebarElements();
@@ -298,4 +303,25 @@ const taskToday = () => {
 
 }
 
+// if task contains this week date, create task.
+const taskWeek = () => {
+    let x = 0;
+    for (let i = 0; i < getArray.length; i++) {
+        x++;
+        let slice = getArray.slice(i, x);
+        const date = slice.map(a => a.date);
+        const stringDate = date.toString();
+        const result = isThisISOWeek(parseISO(stringDate));
+        if (result === true) {
+            const title = slice.map(a => a.title);
+            const detail = slice.map(a => a.detail);
+            const priority = slice.map(a => a.priority);
+            const stringPriority = priority.toString();
+        
+            let localTask = new task(title, detail, date, stringPriority);
+            localTask.makeTask();
+        }
 
+    }
+
+}
