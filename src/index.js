@@ -5,6 +5,7 @@ import getISOWeek from 'date-fns/getISOWeek';
 import isThisISOWeek from 'date-fns/isThisISOWeek';
 import parseISO from 'date-fns/parseISO'
 
+let getArray = JSON.parse(localStorage.getItem("task"));
 
 class task {
     constructor(projectTitle, title, detail, date, priority) {
@@ -42,6 +43,7 @@ class task {
             taskContainer.setAttribute('style', "border: 2px solid red");
         } 
         }
+        
 }
 
 
@@ -266,11 +268,11 @@ const local = (projectTitle) => {
 }
 
 
-let getArray = JSON.parse(localStorage.getItem("task"));
 
 // loop through array length and map each item. Create new task.
 const makeLocalTask = (projectTitle) => {
     let x = 0;
+    getArray = JSON.parse(localStorage.getItem("task"));
     for (let i = 0; i < getArray.length; i++) {
         x++;
         let slice = getArray.slice(i, x);
@@ -284,12 +286,12 @@ const makeLocalTask = (projectTitle) => {
         let localTask = new task(projectTitle, title, detail, date, stringPriority);
         localTask.makeTask();
     }
-
 }
 
 // if task contains today's date, create task.
 const taskToday = () => {
     let x = 0;
+    getArray = JSON.parse(localStorage.getItem("task"));
     let today = format(new Date(), "yyyy-MM-dd");
     for (let i = 0; i < getArray.length; i++) {
         x++;
@@ -307,12 +309,12 @@ const taskToday = () => {
         }
 
     }
-
 }
 
 // if task contains this week date, create task.
 const taskWeek = () => {
     let x = 0;
+    getArray = JSON.parse(localStorage.getItem("task"));
     for (let i = 0; i < getArray.length; i++) {
         x++;
         let slice = getArray.slice(i, x);
@@ -398,6 +400,7 @@ const removeProjectForm = () => {
 // if project contains projectTitle, make task.
 const projectTask = (name) => {
     let x = 0;
+    getArray = JSON.parse(localStorage.getItem("task"));
     for (let i = 0; i < getArray.length; i++) {
         x++;
         let slice = getArray.slice(i, x);
@@ -415,7 +418,6 @@ const projectTask = (name) => {
             localTask.makeTask();
         }
     }
-
 }
 
 class project {
