@@ -31,13 +31,13 @@ class task {
         taskContainer.appendChild(taskDate);
         taskDate.setAttribute('id', 'taskDate');
         taskDate.textContent = this.date;
-        taskToday();
+        //taskToday();
 
-        if (this.priority === "Low") {
+        if (this.priority === 'Low') {
             taskContainer.setAttribute('style', "border: 2px solid green");
-        } else if (this.priority === "Medium") {
+        } else if (this.priority === 'Medium') {
             taskContainer.setAttribute('style', "border: 2px solid orange");
-        } else if (this.priority === "High") {
+        } else if (this.priority === 'High') {
             taskContainer.setAttribute('style', "border: 2px solid red");
         } 
         }
@@ -60,6 +60,7 @@ const sidebarElements = () => {
     btnInbox.addEventListener('click', () => {
         contentElements.removeContent();
         contentElements.selectedInbox();
+        makeLocalTask();
     })
     // today
     const today = document.createElement('div');
@@ -256,11 +257,29 @@ const local = () => {
 }
 
 
-// let getArray = JSON.parse(localStorage.getItem("task"));
-// console.log(getArray[0]);
-// let ara = getArray.slice(3, 4);
+let getArray = JSON.parse(localStorage.getItem("task"));
+// console.log(getArray[4]);
+// let ara = getArray.slice(4, 5);
 // let brb = ara.map(a => a.date);
 // console.log(brb);
+// console.log(getArray);
+
+const makeLocalTask = () => {
+    let x = 0;
+    for (let i = 0; i < getArray.length; i++) {
+        x++;
+        let slice = getArray.slice(i, x);
+        const title = slice.map(a => a.title);
+        const detail = slice.map(a => a.detail);
+        const date = slice.map(a => a.date);
+        const priority = slice.map(a => a.priority);
+        // priority array item to string
+        const stringPriority = priority.toString();
+        
+        let localTask = new task(title, detail, date, stringPriority);
+        localTask.makeTask();
+    }
+}
 
 // const taskToday = () => {
 //     let taskDate = document.querySelector('#taskDate').textContent;
