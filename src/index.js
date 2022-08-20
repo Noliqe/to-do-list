@@ -2,11 +2,8 @@ import './style.css';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 
-console.log(format(new Date(), "yyyy-MM-dd"));
-//let counter  = 1;
 class task {
     constructor(title, detail, date, priority) {
-       // this.id = "taskContainer" + counter++;
         this.title = title;
         this.detail = detail;
         this.date = date;
@@ -74,6 +71,7 @@ const sidebarElements = () => {
     btnToday.addEventListener('click', () => {
         contentElements.removeContent();
         contentElements.selectedToday();
+        taskToday();
      })
     //upcoming
     const week = document.createElement('div');
@@ -258,12 +256,8 @@ const local = () => {
 
 
 let getArray = JSON.parse(localStorage.getItem("task"));
-// console.log(getArray[4]);
-// let ara = getArray.slice(4, 5);
-// let brb = ara.map(a => a.date);
-// console.log(brb);
-// console.log(getArray);
 
+// loop through array length and map each item. Create new task.
 const makeLocalTask = () => {
     let x = 0;
     for (let i = 0; i < getArray.length; i++) {
@@ -281,15 +275,27 @@ const makeLocalTask = () => {
     }
 }
 
-// const taskToday = () => {
-//     let taskDate = document.querySelector('#taskDate').textContent;
-//     let today = format(new Date(), "yyyy-MM-dd");
-//     console.log(taskDate);
-//     console.log(today);
-//         if (taskDate === today) {
-//             console.log('true');
-//         }
+// if task contains today's date, create task.
+const taskToday = () => {
+    let x = 0;
+    let today = format(new Date(), "yyyy-MM-dd");
+    for (let i = 0; i < getArray.length; i++) {
+        x++;
+        let slice = getArray.slice(i, x);
+        const date = slice.map(a => a.date);
+        const stringDate = date.toString();
+        if (today === stringDate) {
+            const title = slice.map(a => a.title);
+            const detail = slice.map(a => a.detail);
+            const priority = slice.map(a => a.priority);
+            const stringPriority = priority.toString();
+        
+            let localTask = new task(title, detail, date, stringPriority);
+            localTask.makeTask();
+        }
 
-// }
+    }
+
+}
 
 
