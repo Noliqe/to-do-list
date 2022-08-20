@@ -136,4 +136,17 @@ body {
     border-left: 10px solid red;
 }
 
+.projectContainer > button {
+    background-color: var(--sidebar-background-color);
+    border: 0;
+    border-radius: 10px;
+    width: 150px;
+    height: 35px;
+}
+
+.projectContainer > button:hover {
+    background-color: white;
+    border-left: 10px solid red;
+}
+
 

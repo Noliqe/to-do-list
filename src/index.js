@@ -7,7 +7,8 @@ import parseISO from 'date-fns/parseISO'
 
 
 class task {
-    constructor(title, detail, date, priority) {
+    constructor(projectTitle, title, detail, date, priority) {
+        this.projectTitle = projectTitle;
         this.title = title;
         this.detail = detail;
         this.date = date;
@@ -32,7 +33,6 @@ class task {
         taskContainer.appendChild(taskDate);
         taskDate.setAttribute('id', 'taskDate');
         taskDate.textContent = this.date;
-        //taskToday();
 
         if (this.priority === 'Low') {
             taskContainer.setAttribute('style', "border: 2px solid green");
@@ -77,20 +77,27 @@ const sidebarElements = () => {
         contentElements.selectedToday();
         taskToday();
      })
-    //upcoming
+    // this week
     const week = document.createElement('div');
     nav.appendChild(week);
     let iconWeek = document.createElement('div');
     week.appendChild(iconWeek);
     let btnWeek = document.createElement('button');
     week.appendChild(btnWeek);
-    btnWeek.setAttribute('id', 'btnUpcoming');
+    btnWeek.setAttribute('id', 'btnWeek');
     btnWeek.textContent = 'This week';
     btnWeek.addEventListener('click', () => {
         contentElements.removeContent();
         contentElements.selectedWeek();
         taskWeek();
      })
+    // projects
+    const projects = document.createElement('p');
+    nav.appendChild(projects);
+    projects.classList.add('projects');
+    projects.setAttribute('id', 'projects');
+    projects.textContent = 'Projects';
+
 }
 sidebarElements();
 
@@ -151,7 +158,7 @@ const contentElements = (function () {
             removeContent}
 })();
 
-const form = () => {
+const form = (projectTitle) => {
 
     const content = document.querySelector('.sub-content');
 
@@ -233,8 +240,8 @@ const form = () => {
     submit.value = 'Add task';
     submit.addEventListener('click', () => {
         event.preventDefault();
-        getValueForm();
-        local();
+        getValueForm(projectTitle);
+        local(projectTitle);
         removeForm();
     })
 }
@@ -245,16 +252,15 @@ const removeForm = () => {
     content.removeChild(x);
 }
 
-const getValueForm = () => {
-    let newTask = new task(title.value, detail.value, date.value, priority.value);
+const getValueForm = (projectTitle) => {
+    let newTask = new task(projectTitle, title.value, detail.value, date.value, priority.value);
     newTask.makeTask();
-    console.log(newTask);
 }
 
 let localArray = JSON.parse(localStorage.getItem("task") || "[]");
 
-const local = () => {
-    let newTask = new task(title.value, detail.value, date.value, priority.value);
+const local = (projectTitle) => {
+    let newTask = new task(projectTitle, title.value, detail.value, date.value, priority.value);
     localArray.push(newTask);
     localStorage.setItem('task', JSON.stringify(localArray));
 }
@@ -263,7 +269,7 @@ const local = () => {
 let getArray = JSON.parse(localStorage.getItem("task"));
 
 // loop through array length and map each item. Create new task.
-const makeLocalTask = () => {
+const makeLocalTask = (projectTitle) => {
     let x = 0;
     for (let i = 0; i < getArray.length; i++) {
         x++;
@@ -275,9 +281,10 @@ const makeLocalTask = () => {
         // priority array item to string
         const stringPriority = priority.toString();
         
-        let localTask = new task(title, detail, date, stringPriority);
+        let localTask = new task(projectTitle, title, detail, date, stringPriority);
         localTask.makeTask();
     }
+
 }
 
 // if task contains today's date, create task.
@@ -295,7 +302,7 @@ const taskToday = () => {
             const priority = slice.map(a => a.priority);
             const stringPriority = priority.toString();
         
-            let localTask = new task(title, detail, date, stringPriority);
+            let localTask = new task('', title, detail, date, stringPriority);
             localTask.makeTask();
         }
 
@@ -318,10 +325,175 @@ const taskWeek = () => {
             const priority = slice.map(a => a.priority);
             const stringPriority = priority.toString();
         
-            let localTask = new task(title, detail, date, stringPriority);
+            let localTask = new task('', title, detail, date, stringPriority);
             localTask.makeTask();
         }
 
     }
 
 }
+
+
+const addProject = () => {
+    const projects = document.querySelector('.projects');
+    const btnProjects = document.querySelector('.btnProjects');
+
+    projects.removeChild(btnProjects);
+
+    //form
+    const form = document.createElement('form');
+    projects.appendChild(form);
+    form.setAttribute("id", "projectForm");
+    form.classList.add('projectForm');
+    // project title
+    const addProjectTitle = document.createElement('input');
+    form.appendChild(addProjectTitle);
+    addProjectTitle.setAttribute("type", "text");
+    addProjectTitle.setAttribute("id", "addProjectTitle");
+    addProjectTitle.setAttribute("placeholder", "Project title");
+    // project submit
+    const submit = document.createElement('input');
+    form.appendChild(submit);
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("id", "projectSubmit");
+    submit.value = 'Add';
+    submit.addEventListener('click', () => {
+        event.preventDefault();
+        getValueProjectForm();
+        removeProjectForm();
+    })
+    // project cancel
+    const cancel = document.createElement('button');
+    form.appendChild(cancel);
+    cancel.setAttribute("id", "projectCancel");
+    cancel.textContent = 'Cancel';
+    cancel.addEventListener('click', () => {
+        removeProjectForm();
+    })
+}
+
+const getValueProjectForm = () => {
+    let newProject = new project(addProjectTitle.value);
+    let projectName = addProjectTitle.value;
+    projectArray.push(projectName);
+    localStorage.setItem('project', JSON.stringify(projectArray));
+    newProject.makeProject();
+}
+
+const removeProjectForm = () => {
+    const projects = document.querySelector('.projects');
+    const form = document.querySelector('.projectForm');
+    projects.removeChild(form);
+    // make new button
+    const btnProjects = document.createElement('button');
+    projects.appendChild(btnProjects);
+    btnProjects.classList.add('btnProjects');
+    btnProjects.setAttribute('id', 'btnProjects');
+    btnProjects.textContent = '+ add project';
+    btnProjects.addEventListener('click', () => {
+        addProject();
+     })
+}
+
+// if project contains projectTitle, make task.
+const projectTask = (name) => {
+    let x = 0;
+    for (let i = 0; i < getArray.length; i++) {
+        x++;
+        let slice = getArray.slice(i, x);
+        const projectTitle = slice.map(a => a.projectTitle);
+        const stringProjectTitle = projectTitle.toString();
+        if (stringProjectTitle === name) {
+            const title = slice.map(a => a.title);
+            const detail = slice.map(a => a.detail);
+            const date = slice.map(a => a.date);
+            const priority = slice.map(a => a.priority);
+            // priority array item to string
+            const stringPriority = priority.toString();
+        
+            let localTask = new task(stringProjectTitle, title, detail, date, stringPriority);
+            localTask.makeTask();
+        }
+    }
+
+}
+
+class project {
+    constructor(title) {
+        this.id = title;
+        this.title = title;
+    }
+    makeProject() {
+        const projects = document.querySelector('.projects');
+
+        const projectContainer = document.createElement('div');
+        projects.appendChild(projectContainer);
+        projectContainer.classList.add('projectContainer');
+
+        let btnProject = document.createElement('button');
+        projectContainer.appendChild(btnProject);
+        btnProject.setAttribute('id', this.id);
+        btnProject.textContent = this.title;
+        btnProject.classList.add('btnProject');
+        btnProject.addEventListener('click', () => {
+            contentElements.removeContent();
+            this.makeContent();
+            projectTask(this.title);
+        })
+    }
+    makeContent() {
+        const content = document.querySelector('.sub-content');
+    
+        const contentClass = document.createElement('div');
+        content.appendChild(contentClass);
+        contentClass.classList.add('contentClass');
+    
+        const projectTitle = document.createElement('h1');
+        contentClass.appendChild(projectTitle);
+        projectTitle.textContent = this.title;
+    
+        const addTaskBtn = document.createElement('button');
+        contentClass.appendChild(addTaskBtn);
+        addTaskBtn.textContent = "+ Add Task";
+        addTaskBtn.addEventListener('click', () => {
+                form(this.title);
+        })
+    }
+}
+
+const displayProjects = (stringProject) => {
+    let newProject = new project(stringProject);
+    newProject.makeProject();
+}
+
+let projectArray = JSON.parse(localStorage.getItem("project") || "[]");
+
+const getProjects = () => {
+    let x = 0;
+    for (let i = 0; i < projectArray.length; i++) {
+        x++;
+        let slice = projectArray.slice(i, x);
+        if (slice !== '') {
+            const stringProject = slice.toString();
+            displayProjects(stringProject);
+        }
+    }
+}
+getProjects();
+
+
+const addProjectBtn = () => {
+
+    const projects = document.querySelector('.projects')
+
+    const btnProjects = document.createElement('button');
+    projects.appendChild(btnProjects);
+    btnProjects.classList.add('btnProjects');
+    btnProjects.setAttribute('id', 'btnProjects');
+    btnProjects.textContent = '+ add project';
+    btnProjects.addEventListener('click', () => {
+        addProject();
+     })
+}
+
+addProjectBtn();
