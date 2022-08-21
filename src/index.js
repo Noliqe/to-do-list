@@ -7,32 +7,71 @@ import parseISO from 'date-fns/parseISO'
 
 let getArray = JSON.parse(localStorage.getItem("task"));
 
+function randomId () {
+   let x = Math.random().toString(36).slice(2, 10);
+    return x
+}
+
 class task {
-    constructor(projectTitle, title, detail, date, priority) {
+    constructor(projectTitle, title, detail, date, priority, id) {
         this.projectTitle = projectTitle;
         this.title = title;
         this.detail = detail;
         this.date = date;
         this.priority = priority;
+        this.id = id;
     }
     makeTask() {
         const taskContent = document.querySelector('.contentClass');
     
+        const taskHeadcontainer = document.createElement('div');
+        taskContent.appendChild(taskHeadcontainer);
+        taskHeadcontainer.classList.add('taskHeadcontainer');
+
         const taskContainer = document.createElement('div');
-        taskContent.appendChild(taskContainer);
+        taskHeadcontainer.appendChild(taskContainer);
         taskContainer.classList.add('taskContainer');
     
         const taskTitle = document.createElement('p');
         taskContainer.appendChild(taskTitle);
         taskTitle.textContent = this.title;
+        taskTitle.classList.add('taskTitle');
     
+        const expandBtn = document.createElement('button');
+        taskContainer.appendChild(expandBtn);
+        expandBtn.classList.add('expandBtn');
+        expandBtn.addEventListener('click', () => {
+            if (taskDetail.style.display === "block") {
+                taskDetail.style.display = "none";
+                taskContainer.style.height = '25px';
+                expandBtn.style.transform = "rotate(0deg)";
+            } else {
+                taskDetail.style.display = "block";
+                taskContainer.style.height = '50px';
+                expandBtn.style.transform = "rotate(90deg)";
+            }
+        })
+
+        const closeBtn = document.createElement('button');
+        taskContainer.appendChild(closeBtn);
+        closeBtn.classList.add('closeBtn');
+        closeBtn.addEventListener('click', () => {
+            deleteItem(closeBtn);
+            deleteLocalStorage(this);
+        })
+
         const taskDetail = document.createElement('p');
         taskContainer.appendChild(taskDetail);
         taskDetail.textContent = this.detail;
+        taskDetail.classList.add('taskDetail');
+        taskDetail.setAttribute('style', 'display: none');
+
+        
     
         const taskDate = document.createElement('p');
-        taskContainer.appendChild(taskDate);
+        taskHeadcontainer.appendChild(taskDate);
         taskDate.setAttribute('id', 'taskDate');
+        taskDate.classList.add('taskDate');
         taskDate.textContent = this.date;
 
         if (this.priority === 'Low') {
@@ -44,6 +83,32 @@ class task {
         } 
         }
         
+}
+
+function deleteItem(e) {
+    e.parentElement.parentElement.remove();
+}
+
+function deleteLocalStorage(e) {
+    let eArray = [];
+    eArray.push(e);
+    let getId = eArray.map(a => a.id);
+    let getStringId = getId.toString();
+    let x = 0;
+    let z = 0;
+    getArray = JSON.parse(localStorage.getItem("task"));
+
+    for (let i = 0; i < getArray.length; i++) {
+        x++;
+        let slice = getArray.slice(i, x);
+        const arrayId = slice.map(a => a.id);
+        const stringId = arrayId.toString();
+        if (stringId === getStringId) {
+            // remove array with Id from array
+            const removed = getArray.splice(i, 1);
+            localStorage.setItem('task', JSON.stringify(getArray));
+        }
+}
 }
 
 
@@ -235,6 +300,9 @@ const form = (projectTitle) => {
         btnHigh.setAttribute("style", "border: 2px solid red");
         priority.value = 'High';
     })
+    // make randomId
+    let makeId = randomId();
+
     const submit = document.createElement('input');
     form.appendChild(submit);
     submit.setAttribute("type", "submit");
@@ -242,8 +310,8 @@ const form = (projectTitle) => {
     submit.value = 'Add task';
     submit.addEventListener('click', () => {
         event.preventDefault();
-        getValueForm(projectTitle);
-        local(projectTitle);
+        getValueForm(projectTitle, makeId);
+        local(projectTitle, makeId);
         removeForm();
     })
 }
@@ -254,15 +322,16 @@ const removeForm = () => {
     content.removeChild(x);
 }
 
-const getValueForm = (projectTitle) => {
-    let newTask = new task(projectTitle, title.value, detail.value, date.value, priority.value);
+const getValueForm = (projectTitle, makeId) => {
+    let newTask = new task(projectTitle, title.value, detail.value, date.value, priority.value, makeId);
     newTask.makeTask();
 }
 
 let localArray = JSON.parse(localStorage.getItem("task") || "[]");
 
-const local = (projectTitle) => {
-    let newTask = new task(projectTitle, title.value, detail.value, date.value, priority.value);
+const local = (projectTitle, makeId) => {
+    localArray = JSON.parse(localStorage.getItem("task") || "[]");
+    let newTask = new task(projectTitle, title.value, detail.value, date.value, priority.value, makeId);
     localArray.push(newTask);
     localStorage.setItem('task', JSON.stringify(localArray));
 }
@@ -280,10 +349,11 @@ const makeLocalTask = (projectTitle) => {
         const detail = slice.map(a => a.detail);
         const date = slice.map(a => a.date);
         const priority = slice.map(a => a.priority);
+        const taskId = slice.map(a => a.id);
         // priority array item to string
         const stringPriority = priority.toString();
         
-        let localTask = new task(projectTitle, title, detail, date, stringPriority);
+        let localTask = new task(projectTitle, title, detail, date, stringPriority, taskId);
         localTask.makeTask();
     }
 }
@@ -302,9 +372,10 @@ const taskToday = () => {
             const title = slice.map(a => a.title);
             const detail = slice.map(a => a.detail);
             const priority = slice.map(a => a.priority);
+            const taskId = slice.map(a => a.id);
             const stringPriority = priority.toString();
         
-            let localTask = new task('', title, detail, date, stringPriority);
+            let localTask = new task('', title, detail, date, stringPriority, taskId);
             localTask.makeTask();
         }
 
@@ -325,9 +396,10 @@ const taskWeek = () => {
             const title = slice.map(a => a.title);
             const detail = slice.map(a => a.detail);
             const priority = slice.map(a => a.priority);
+            const taskId = slice.map(a => a.id);
             const stringPriority = priority.toString();
         
-            let localTask = new task('', title, detail, date, stringPriority);
+            let localTask = new task('', title, detail, date, stringPriority, taskId);
             localTask.makeTask();
         }
 
@@ -411,10 +483,11 @@ const projectTask = (name) => {
             const detail = slice.map(a => a.detail);
             const date = slice.map(a => a.date);
             const priority = slice.map(a => a.priority);
+            const taskId = slice.map(a => a.id);
             // priority array item to string
             const stringPriority = priority.toString();
         
-            let localTask = new task(stringProjectTitle, title, detail, date, stringPriority);
+            let localTask = new task(stringProjectTitle, title, detail, date, stringPriority, taskId);
             localTask.makeTask();
         }
     }
