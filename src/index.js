@@ -76,10 +76,13 @@ class task {
 
         if (this.priority === 'Low') {
             taskContainer.setAttribute('style', "border: 2px solid green");
+            taskDate.setAttribute('style', "border: 2px solid green");
         } else if (this.priority === 'Medium') {
             taskContainer.setAttribute('style', "border: 2px solid orange");
+            taskDate.setAttribute('style', "border: 2px solid orange");
         } else if (this.priority === 'High') {
             taskContainer.setAttribute('style', "border: 2px solid red");
+            taskDate.setAttribute('style', "border: 2px solid red");
         } 
         }
         
@@ -118,8 +121,7 @@ const sidebarElements = () => {
     // inbox
     const inbox = document.createElement('div');
     nav.appendChild(inbox);
-    let iconInbox = document.createElement('div');
-    inbox.appendChild(iconInbox);
+
     let btnInbox = document.createElement('button');
     inbox.appendChild(btnInbox);
     btnInbox.setAttribute('id', 'btnInbox');
@@ -133,12 +135,11 @@ const sidebarElements = () => {
     // today
     const today = document.createElement('div');
     nav.appendChild(today);
-    let iconToday = document.createElement('div');
-    today.appendChild(iconToday);
     let btnToday = document.createElement('button');
     today.appendChild(btnToday);
     btnToday.setAttribute('id', 'btnToday');
     btnToday.textContent = 'Today';
+    btnToday.classList.add('btnToday');
     btnToday.addEventListener('click', () => {
         contentElements.removeContent();
         contentElements.selectedToday();
@@ -147,19 +148,18 @@ const sidebarElements = () => {
     // this week
     const week = document.createElement('div');
     nav.appendChild(week);
-    let iconWeek = document.createElement('div');
-    week.appendChild(iconWeek);
     let btnWeek = document.createElement('button');
     week.appendChild(btnWeek);
     btnWeek.setAttribute('id', 'btnWeek');
     btnWeek.textContent = 'This week';
+    btnWeek.classList.add('btnWeek');
     btnWeek.addEventListener('click', () => {
         contentElements.removeContent();
         contentElements.selectedWeek();
         taskWeek();
      })
     // projects
-    const projects = document.createElement('p');
+    const projects = document.createElement('div');
     nav.appendChild(projects);
     projects.classList.add('projects');
     projects.setAttribute('id', 'projects');
@@ -181,12 +181,17 @@ const contentElements = (function () {
         contentClass.appendChild(inboxTitle);
         inboxTitle.textContent = 'Inbox';
 
+        // timeout for button to place under task
+        setTimeout(() => {
         const addTaskBtn = document.createElement('button');
         contentClass.appendChild(addTaskBtn);
-        addTaskBtn.textContent = "+ Add Task";
+        addTaskBtn.textContent = "Add Task";
+        addTaskBtn.classList.add('addTaskBtn');
         addTaskBtn.addEventListener('click', () => {
             form();
+            removeButton();
          })
+        }, "20");
     }
     let selectedToday = () => {
         const content = document.querySelector('.sub-content');
@@ -224,6 +229,24 @@ const contentElements = (function () {
             selectedWeek,
             removeContent}
 })();
+
+const removeButton = () => {
+    const content = document.querySelector('.contentClass');
+    let x = document.querySelector('.addTaskBtn');
+    content.removeChild(x);
+}
+
+const remakeButton = () => {
+    const contentClass = document.querySelector('.contentClass');
+    const addTaskBtn = document.createElement('button');
+    contentClass.appendChild(addTaskBtn);
+    addTaskBtn.textContent = "Add Task";
+    addTaskBtn.classList.add('addTaskBtn');
+    addTaskBtn.addEventListener('click', () => {
+        form();
+        removeButton();
+     })
+}
 
 const form = (projectTitle) => {
 
@@ -313,6 +336,7 @@ const form = (projectTitle) => {
         getValueForm(projectTitle, makeId);
         local(projectTitle, makeId);
         removeForm();
+        remakeButton();
     })
 }
 
@@ -463,7 +487,7 @@ const removeProjectForm = () => {
     projects.appendChild(btnProjects);
     btnProjects.classList.add('btnProjects');
     btnProjects.setAttribute('id', 'btnProjects');
-    btnProjects.textContent = '+ add project';
+    btnProjects.textContent = 'add project';
     btnProjects.addEventListener('click', () => {
         addProject();
      })
@@ -529,7 +553,7 @@ class project {
     
         const addTaskBtn = document.createElement('button');
         contentClass.appendChild(addTaskBtn);
-        addTaskBtn.textContent = "+ Add Task";
+        addTaskBtn.textContent = "Add Task";
         addTaskBtn.addEventListener('click', () => {
                 form(this.title);
         })
@@ -565,7 +589,7 @@ const addProjectBtn = () => {
     projects.appendChild(btnProjects);
     btnProjects.classList.add('btnProjects');
     btnProjects.setAttribute('id', 'btnProjects');
-    btnProjects.textContent = '+ add project';
+    btnProjects.textContent = 'add project';
     btnProjects.addEventListener('click', () => {
         addProject();
      })

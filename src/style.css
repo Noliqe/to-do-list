@@ -1,49 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+@media screen and (max-width: 768px) {
+    #main {
+        grid-template-columns: minmax(170px, 20vw) 80vw;
+    }
+    #content {
+        width: 75vw;
+    }
+    body {
+        background-color: var(--background-color);
+    }
+    #form {
+        position: fixed;
+        top: 20%;
+        left: 10%;
+        width: 400px;
+    }
+}
+
+
 html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: "Muli";
 }
 
 body {
     margin: 0;
     padding: 0;
-    --sidebar-background-color: rgb(255, 102, 0);
     --sidebar-left-margin: 20px;
+    --background-color: #E3FDFD;
+    --content-color: #A6E3E9;
+    --project-hover-color: #4faab3;
+    --sidebar-color: #E3FDFD;
+    --sidebar-text-color: #1e2222;
+    --form-border-color: #A6E3E9;
+    --form-background-color: #CBF1F5;
+    --form-color: #1e2222;
 }
 
 /* header */
-.header{
+/* .header{
     background-color: lightblue;
     width: 100vw;
     height: 100px;
-}
+} */
 
 /* main */
 .main {
     background-color: gray;
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(200px, 20vw) 80vw;
+    grid-row: 10vh 90vh;
+}
+
+.mainHeader {
+    background-color: var(--background-color);
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.sidebar {
+    background-color: var(--sidebar-color);
+    color: var(--sidebar-text-color);
+    grid-column: 1/2;
+    grid-row: 1/3;
     display: flex;
-    flex-direction: row;
+    align-items: left;
+    flex-direction: column;
 }
 
 /* content */
 .content {
-    width: 80vw;
-    height: 80vh;
+    background-color: var(--background-color);
+    grid-column: 2/3;
+    grid-row: 1/3;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .sub-content {
+    background-color: var(--content-color);
+    color: var(--sidebar-text-color);
+    border-radius: 10px;
     width: 75vw;
-    height: 75vh;
+    height: 90vh;
     display: flex;
     justify-content: start;
     align-items: center;
     flex-direction: column;
 }
+
+.contentClass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentClass > h1 {
+    background: url(./icons8-inbox-64.png) no-repeat left;
+    background-size: 30px;
+    width: 150px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contentClass > button {
+    background: url(./icons8-add-100.png) no-repeat left;
+    background-size: 30px;
+    margin-top: 20px;
+    background-color: white;
+    color: var(--sidebar-text-color);
+    border: 2px solid;
+    border-radius: 10px;
+    width: 150px;
+    height: 35px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.contentClass > button:hover {
+    transition: 0.5s;
+    color: #4C5B5C;
+}
+
 
 /* form */
 
@@ -51,27 +137,62 @@ body {
     position: fixed;
     top: 30%;
     margin-top: 50px;
-    background-color: white;
-    border: 1px solid black;
+    background-color: var(--form-background-color);
+    border: 2px solid var(--form-border-color);
     border-radius: 10px;
     height: 200px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     align-items: center;
+    color: var(--form-color);
 }
 
 .form > * {
     margin-left: 5px;
     margin-right: 5px;
+    background-color: var(--form-background-color);
+    color: var(--form-color);
+}
+
+input[type=date] {
+    border-radius: 10px;
+}
+
+.taskDate {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    margin: 0;
 }
 
 .btnLow, .btnMedium, .btnHigh {
-    border: 2px solid gray;
     border-radius: 10px;
     width: 60px;
     text-align: center;
     margin-left: 10px;
+}
+
+.btnLow {
+    border: 2px solid green;
+}
+.btnLow:hover {
+    border: 2px solid lightgreen;
+}
+
+.btnMedium {
+    border: 2px solid orange;
+}
+.btnMedium:hover {
+    border: 2px solid rgb(255, 219, 151);
+}
+
+.btnHigh {
+    border: 2px solid red;
+}
+.btnHigh:hover {
+    border: 2px solid rgb(250, 143, 143);
 }
 
 #title {
@@ -79,12 +200,34 @@ body {
     grid-row: 1/2;
     height: 30px;
     margin-top: 5px;
+    border: 2px solid var(--form-border-color);
+    border-radius: 10px;
+    color: var(--form-color);
+}
+
+#title::placeholder {
+    color: var(--form-color);
 }
 
 #detail {
+    margin-top: 2px;
     grid-column: 1/5;
     grid-row: 2/4;
     height: 60px;
+    border: 2px solid var(--form-border-color);
+    border-radius: 10px;
+    color: var(--form-color);
+}
+
+#detail::placeholder {
+    color: var(--form-color);
+}
+
+#date {
+    border: 2px solid var(--form-border-color);
+}
+#date:hover {
+    border: 2px solid var(--project-hover-color);
 }
 
 .priority {
@@ -95,6 +238,11 @@ body {
 #submit {
     grid-column: 4/5;
     grid-row: 5/6;
+    border-radius: 10px;
+}
+
+#submit:hover {
+    border: 2px solid rgb(0, 0, 0);
 }
 
 /* content > task */
@@ -102,6 +250,7 @@ body {
 .taskHeadcontainer {
     display: flex;
     flex-direction: row;
+    margin-top: 5px;
 }
 
 .taskContainer {
@@ -109,6 +258,8 @@ body {
     grid-template-columns: 35vw 25px 25px;
     height: 25px;
     border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .taskTitle {
@@ -127,6 +278,7 @@ body {
     background: url(./icons8-close-48.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 18px;
 }
 
 @keyframes spin {
@@ -134,9 +286,6 @@ body {
     to {transform:rotate(120deg);}
 }
 
-.taskDate {
-    margin: 5px;
-}
 
 .taskContainer > p {
     margin: 2px;
@@ -153,13 +302,37 @@ body {
 }
 
 /* sidebar */
-.sidebar {
-    background-color: var(--sidebar-background-color);
-    height: 80vh;
-    width: 20vw;
+
+.sidebarHeader {
     display: flex;
-    align-items: left;
-    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.iconSideHeader {
+    background: url(./icons8-microsoft-to-do-app-96.png);
+    background-size: 48px;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 48px;
+    width: 48px;
+}
+
+.sidebarHeader > h1 {
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+    text-align: center;
+}
+
+.nav {
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.nav > div {
+    display: flex;
 }
 
 .nav > * {
@@ -169,15 +342,50 @@ body {
 
 .nav > * > button {
     background-color: var(--sidebar-background-color);
+    color: var(--sidebar-text-color);
     border: 0;
     border-radius: 10px;
     width: 150px;
     height: 35px;
+    font-size: 17px;
+    text-align: center;
 }
 
 .nav > * > button:hover {
     background-color: white;
     border-left: 10px solid red;
+}
+
+
+.btnInbox {
+    background: url(./icons8-inbox-64.png) no-repeat left;
+    background-size: 30px;
+}
+
+.btnToday {
+    background: url(./icons8-clock-64.png) no-repeat left;
+    background-size: 30px;
+}
+
+.btnWeek {
+    background: url(./icons8-calendar-96.png) no-repeat left;
+    background-size: 30px;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--sidebar-text-color);
+}
+
+.btnProject {
+    background: url(./icons8-circle-100.png) no-repeat left;
+    background-size: 25px;
+    font-size: 18px;
+    color: var(--sidebar-text-color);
 }
 
 .projectContainer > button {
@@ -192,5 +400,34 @@ body {
     background-color: white;
     border-left: 10px solid red;
 }
+
+.btnProjects {
+    background: url(./icons8-add-96.png) no-repeat left;
+    background-position: -4px;
+    background-size: 35px;
+    margin-top: 20px;
+}
+
+.projectForm > * {
+    border: 2px solid var(--content-color);
+    color: var(--sidebar-text-color);
+    background-color: white;
+    border-radius: 10px;
+    height: 22px;
+}
+
+.projectForm > *:hover {
+    border: 2px solid var(--project-hover-color);
+}
+
+#projectSubmit {
+    margin-right: 5px;
+    color: var(--sidebar-text-color);
+}
+
+
+
+
+
 
 
